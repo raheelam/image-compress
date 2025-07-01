@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adaptive_palette_compression"
+version = "1.0.0"
+authors = [{name="Rahila Mohammed ILEGBODU"}]
+description = "Adaptive k-Means Color-Palette Compression package"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+
+[tool.setuptools]
+package-dir = {"src" = "src"}
+packages = [
+  "src",
+  "src.adaptive_k",
+  "src.compress",
+  "src.features",
+  "src.metrics",
+  "src.refine_centroid",
+] 

@@ -1,0 +1,61 @@
+\documentclass{elektr}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor=blue,
+	citecolor=blue}
+\usepackage[all]{xy,xypic}
+\usepackage{amsfonts,amssymb,amsmath,amsgen,amsopn,amsbsy,theorem,graphicx,epsfig}
+\usepackage{eufrak,amscd,bezier,latexsym,mathrsfs,eurosym,enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{cleveref,multirow}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[pagewise]{lineno}
+\linenumbers
+
+\yil{}
+\vol{}
+\fpage{}
+\lpage{}
+\doi{}
+
+\title{Manuscript template: full title must be in sentence case}
+
+\author[AUTHOR and AUTHOR]{
+	\textbf{First AUTHOR$^{1}$\thanks{elektrik@tubitak.gov.tr}~, Second AUTHOR$^{1,2}$}\\
+	$^{1}$First Department, First Faculty, First University, First City, First Country\\
+	$^{2}$Second Department With a Long Name, Second Faculty With a Long Name, Second University,\\ Second City, Second Country
+	\\ [1.8em]
+	
+	\textbf{*Correspondence:} elektrik@tubitak.gov.tr \\
+	ORCIDs:\\
+	First AUTHOR: \url{https://orcid.org/0000-0001-2345-6789} \\
+	Second AUTHOR: \url{https://orcid.org/0000-0001-2345-6785} \\
+	
+}
+
+\input{elksty.tex}
+
+
+\setcounter{page}{1}
+
+\begin{document}
+	
+	\maketitle
+	
+	
+	\begin{abstract}
+		This document is a template for use by authors sending manuscripts to the Turkish Journal of Electrical Engineering {\&} Computer Sciences. It also contains important information on the paper style. The title of the manuscript must be written in lower case except for the first word and proper nouns. Author names must be given in full, with surnames (family names) all in capitals. Author addresses must be given in English in the following order: Department, Faculty, University, City, Country, with numbers in superscript after each author name to indicate his/her address. Footnotes must not be used for addresses. The corresponding author's email address must be clearly given, marked with an asterisk. The abstract must not be longer than 300 words and must clearly state the study's purpose and results. The manuscript's title and abstract must not contain mathematical formulae. The abstract must not contain any reference citations. The key words must be separated by commas and should not include acronyms.
+		
+		\keywords{Electronics, instructions for authors, manuscript template}
+	\end{abstract}
+	
+	\section*{Acknowledgment/Disclaimers/Conflict of interest}
+	Please include any necessary acknowledgments or disclaimers on the title page, as well. Names of funding organizations should be written in full. Do not repeat them in the main document.
+	All authors should also disclose any conflict of interest that may have influenced either the conduct or the presentation of the research.
+	
+	\section*{Informed consent}
+	Manuscripts reporting the results of experimental investigations conducted with humans must clearly state that the study protocol received institutional review board approval and that all participants provided informed consent in the format required by the relevant authorities and/or boards. Please reference the relevant review board(s) and approval code(s) here.
+
+\end{document}

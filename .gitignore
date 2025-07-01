@@ -1,0 +1,16 @@
+# Byte-code / temp files
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.pyo
+*.tmp
+*.log
+# Large experiment artifacts
+data/
+results/
+.venv/
+submission_package.zip
+# OS / editor noise
+.DS_Store
+.vscode/
+._*

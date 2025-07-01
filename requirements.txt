@@ -1,0 +1,13 @@
+numpy>=1.26
+pillow>=10.0
+scikit-image>=0.22
+scikit-learn>=1.4
+torch>=2.2
+colour-science>=0.4.4
+tqdm>=4.66
+colormath>=3.0.0
+pytest>=8.0
+matplotlib>=3.8
+seaborn>=0.13
+pandas>=2.2
+streamlit>=1.33 

@@ -1,0 +1,5 @@
+dataset,method,bpp,psnr,ssim
+clic24,adaptive,3.893,39.335,0.970
+clic24,k256,4.006,39.100,0.970
+div2k,adaptive,4.066,38.751,0.969
+div2k,k256,4.198,38.350,0.968
