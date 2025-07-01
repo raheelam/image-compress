@@ -29,8 +29,14 @@ def compress_image(in_path: Path, out_path: Path) -> None:
     ak, rc = _load_models()
     k = predict_k(ak, in_path)
 
-    # run k-means on downsampled copy
-    small = arr[::2, ::2].reshape(-1, 3)
+    # ---- Palette estimation with limited RAM ----
+    # Downsample aggressively then sample at most 50 k pixels to keep the
+    # clustering lightweight for Streamlit-Cloud's 1 GB container.
+    small = arr[::4, ::4].reshape(-1, 3)
+    if len(small) > 50_000:
+        idx = np.random.choice(len(small), 50_000, replace=False)
+        small = small[idx]
+
     km = KMeans(n_clusters=k, n_init="auto", random_state=0)
     km.fit(small)
     centroids = km.cluster_centers_.astype(np.float32)  # (k,3)
@@ -40,9 +46,16 @@ def compress_image(in_path: Path, out_path: Path) -> None:
     with torch.no_grad():
         c_ref = rc(c).squeeze(0).T.cpu().numpy()
 
-    # assign full-res pixels
+    # Assign each full-res pixel to nearest refined centroid in manageable
+    # chunks (avoids an 8 GB distance matrix for 4 MP × 256 colours).
     flat = arr.reshape(-1, 3)
-    labels = np.argmin(((flat[:, None, :] - c_ref[None]) ** 2).sum(-1), axis=1).astype(np.uint8)
+    labels = np.empty(flat.shape[0], dtype=np.uint8)
+    chunk = 100_000  # pixels per batch ≈ 0.3 MB @ k=256
+    for start in range(0, flat.shape[0], chunk):
+        end = start + chunk
+        dists = ((flat[start:end, None, :] - c_ref[None]) ** 2).sum(-1)
+        labels[start:end] = np.argmin(dists, axis=1).astype(np.uint8)
+
     pal_img = Image.fromarray(labels.reshape(arr.shape[:2]), mode="P")
     palette = (c_ref * 255).astype(np.uint8).flatten().tolist()
     pal_img.putpalette(palette + [0] * (768 - len(palette)))

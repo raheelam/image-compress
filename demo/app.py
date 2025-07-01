@@ -72,10 +72,10 @@ if uploaded is not None:
     # VERSION-COMPATIBLE image display helper
     def _show_image(img):
         try:
-            # Newer Streamlit (≥1.40) prefers use_container_width
+            # Prefer the modern arg when supported (Streamlit ≥ 1.40)
             st.image(img, use_container_width=True)
-        except TypeError:
-            # Older Streamlit (<1.40) still uses use_column_width
+        except Exception:
+            # Fall back for older releases that don't recognise that kwarg
             st.image(img, use_column_width=True)
 
     with col1:
