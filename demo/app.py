@@ -69,13 +69,22 @@ if uploaded is not None:
     comp_size = st.session_state["comp_size"]
 
     col1, col2 = st.columns(2)
+    # VERSION-COMPATIBLE image display helper
+    def _show_image(img):
+        try:
+            # Newer Streamlit (≥1.40) prefers use_container_width
+            st.image(img, use_container_width=True)
+        except TypeError:
+            # Older Streamlit (<1.40) still uses use_column_width
+            st.image(img, use_column_width=True)
+
     with col1:
         st.subheader("Original")
-        st.image(orig_img, use_column_width=True)
+        _show_image(orig_img)
         st.text(f"{uploaded.size/1024:.1f} kB")
     with col2:
         st.subheader("Compressed PNG-8")
-        st.image(comp_img, use_column_width=True)
+        _show_image(comp_img)
         st.text(f"{comp_size/1024:.1f} kB  ({ratio*100:.1f}% of original)")
 
     st.markdown("### Quality metrics")
