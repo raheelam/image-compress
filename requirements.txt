@@ -2,7 +2,7 @@ numpy>=1.26
 pillow>=10.0
 scikit-image>=0.22
 scikit-learn>=1.4
-torch==2.2.2+cpu --index-url https://download.pytorch.org/whl/cpu
+torch==2.7.1
 colour-science>=0.4.4
 tqdm>=4.66
 colormath>=3.0.0
